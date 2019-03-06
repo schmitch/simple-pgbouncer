@@ -25,9 +25,8 @@ ${LOGFILE:+logfile = ${LOGFILE}\n}\
 ${PIDFILE:+pidfile = ${PIDFILE}\n}\
 listen_addr = ${LISTEN_ADDR:-0.0.0.0}
 ${LISTEN_PORT:+listen_port = ${LISTEN_PORT}\n}\
- 
-auth_type = trust
-auth_query = SELECT uname, phash from pgbouncer.user_lookup($1)
+
+auth_query = SELECT uname AS usename, phash AS passwd FROM pgbouncer.user_lookup(\$1)
 admin_users = postgres
 stats_users = postgres
 ${AUTH_FILE:+auth_file = ${AUTH_FILE}\n}\
